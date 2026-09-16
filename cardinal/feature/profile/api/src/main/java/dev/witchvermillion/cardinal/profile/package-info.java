@@ -1,4 +1,4 @@
 @NullMarked
-package dev.witchvermillion.cardinal.profile.internal;
+package dev.witchvermillion.cardinal.profile;
 
 import org.jspecify.annotations.NullMarked;

@@ -10,24 +10,9 @@
     </parent>
 
     <artifactId>cardinal-feature-profile</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>26.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>dev.witchvermillion.cardinal</groupId>
-            <artifactId>cardinal-integration-mongodb</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.witchvermillion.cardinal</groupId>
-            <artifactId>cardinal-integration-redisson</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
+    <packaging>pom</packaging>
+    <modules>
+        <module>api</module>
+    </modules>
 
 </project>
