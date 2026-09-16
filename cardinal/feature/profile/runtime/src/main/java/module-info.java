@@ -4,6 +4,7 @@ import io.avaje.inject.InjectModule;
 module dev.witchvermillion.cardinal.profile.runtime {
   requires static org.jspecify;
   requires dev.witchvermillion.cardinal.profile.api;
+  requires org.mongodb.bson;
   requires io.avaje.inject;
   requires jakarta.inject;
   requires reactor.core;
