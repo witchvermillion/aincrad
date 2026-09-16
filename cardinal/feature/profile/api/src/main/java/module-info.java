@@ -1,6 +1,3 @@
-import io.avaje.inject.InjectModule;
-
-@InjectModule(name = "profile")
 module dev.witchvermillion.cardinal.profile {
   requires static org.jetbrains.annotations;
   requires static org.jspecify;
