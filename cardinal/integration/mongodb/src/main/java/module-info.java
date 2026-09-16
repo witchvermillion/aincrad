@@ -1,6 +1,3 @@
-import io.avaje.inject.InjectModule;
-
-@InjectModule(name = "mongo")
 module dev.witchvermillion.cardinal.mongo {
   requires static org.jspecify;
   requires org.mongodb.driver.reactivestreams;

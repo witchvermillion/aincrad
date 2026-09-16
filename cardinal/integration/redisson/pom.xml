@@ -13,12 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.avaje</groupId>
-            <artifactId>avaje-inject</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
             <version>4.7.0</version>
