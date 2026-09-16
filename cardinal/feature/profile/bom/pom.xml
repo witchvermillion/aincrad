@@ -20,6 +20,11 @@
                 <artifactId>cardinal-feature-profile-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>dev.witchvermillion.cardinal.profile</groupId>
+                <artifactId>cardinal-feature-profile-runtime</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

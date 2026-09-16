@@ -5,16 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>dev.witchvermillion.cardinal</groupId>
-        <artifactId>cardinal-feature</artifactId>
+        <artifactId>cardinal-feature-profile</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cardinal-feature-profile</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>api</module>
-        <module>bom</module>
-        <module>runtime</module>
-    </modules>
+    <groupId>dev.witchvermillion.cardinal.profile</groupId>
+    <artifactId>cardinal-feature-profile-runtime</artifactId>
 
 </project>
