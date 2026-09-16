@@ -1,6 +1,5 @@
-package dev.witchvermillion.cardinal.profile.loader;
+package dev.witchvermillion.cardinal.profile;
 
-import dev.witchvermillion.cardinal.profile.Profile;
 import java.util.UUID;
 import org.jetbrains.annotations.ApiStatus;
 import org.jspecify.annotations.NullMarked;

@@ -2,8 +2,8 @@ package dev.witchvermillion.cardinal.profile.internal;
 
 import dev.witchvermillion.cardinal.profile.Profile;
 import dev.witchvermillion.cardinal.profile.ProfileManager;
-import dev.witchvermillion.cardinal.profile.loader.ProfileLoader;
-import dev.witchvermillion.cardinal.profile.registrar.ProfileRegistrar;
+import dev.witchvermillion.cardinal.profile.ProfileLoader;
+import dev.witchvermillion.cardinal.profile.ProfileRegistrar;
 import io.avaje.inject.BeanTypes;
 import jakarta.inject.Singleton;
 import java.util.UUID;
