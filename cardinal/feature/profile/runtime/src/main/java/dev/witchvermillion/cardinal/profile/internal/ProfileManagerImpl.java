@@ -7,7 +7,6 @@ import dev.witchvermillion.cardinal.profile.ProfileRegistrar;
 import io.avaje.inject.BeanTypes;
 import jakarta.inject.Singleton;
 import java.util.UUID;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Singleton
@@ -20,17 +19,7 @@ final class ProfileManagerImpl implements ProfileManager {
   }
 
   @Override
-  public Flux<Profile> registerProfiles(final Iterable<UUID> profileIds) {
-    return null;
-  }
-
-  @Override
   public Mono<Profile> loadProfile(final UUID profileId) {
-    return null;
-  }
-
-  @Override
-  public Flux<Profile> loadProfiles(final Iterable<UUID> profileIds) {
     return null;
   }
 }
