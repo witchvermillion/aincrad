@@ -1,4 +1,6 @@
-package dev.witchvermillion.cardinal.profile;
+package dev.witchvermillion.cardinal.profile.internal;
+
+import dev.witchvermillion.cardinal.profile.Profile;
 
 import java.time.Instant;
 import java.util.UUID;
