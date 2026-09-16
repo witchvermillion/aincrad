@@ -16,12 +16,4 @@
 
     <artifactId>cardinal-integration</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>dev.witchvermillion.cardinal</groupId>
-            <artifactId>cardinal-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
-
 </project>
