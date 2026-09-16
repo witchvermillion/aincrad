@@ -20,7 +20,7 @@ final class ProfileManagerImpl implements ProfileManager {
   }
 
   @Override
-  public Flux<Profile> registeredProfiles(final Iterable<UUID> profileIds) {
+  public Flux<Profile> registerProfiles(final Iterable<UUID> profileIds) {
     return null;
   }
 

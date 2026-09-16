@@ -10,5 +10,5 @@ public interface ProfileRegistrar {
 
   Mono<Profile> registerProfile(final UUID profileId);
 
-  Flux<Profile> registeredProfiles(final Iterable<UUID> profileIds);
+  Flux<Profile> registerProfiles(final Iterable<UUID> profileIds);
 }
