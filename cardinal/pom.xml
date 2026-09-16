@@ -15,8 +15,6 @@
     <modules>
         <module>core</module>
         <module>integration</module>
-        <module>integration/mongodb</module>
-        <module>integration/redisson</module>
         <module>feature</module>
     </modules>
 
