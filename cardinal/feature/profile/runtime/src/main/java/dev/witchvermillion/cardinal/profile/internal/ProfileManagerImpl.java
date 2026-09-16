@@ -20,6 +20,11 @@ final class ProfileManagerImpl implements ProfileManager {
   }
 
   @Override
+  public Flux<Profile> registeredProfiles(final Iterable<UUID> profileIds) {
+    return null;
+  }
+
+  @Override
   public Mono<Profile> loadProfile(final UUID profileId) {
     return null;
   }
