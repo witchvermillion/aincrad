@@ -2,6 +2,8 @@ package dev.witchvermillion.cardinal.profile.internal;
 
 import static com.mongodb.client.model.Filters.eq;
 import static java.util.Objects.requireNonNull;
+import static org.bson.codecs.configuration.CodecRegistries.fromCodecs;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import static reactor.core.publisher.Mono.defer;
 import static reactor.core.publisher.Mono.from;
 
@@ -53,7 +55,10 @@ final class ProfileManagerImpl implements ProfileManager {
   ProfileManagerImpl(
       final MongoDatabase mongoDatabase, final RedissonReactiveClient redissonReactiveClient) {
     this.profileMongoCollection =
-        mongoDatabase.getCollection(PROFILE_MONGO_COLLECTION_NAME, ProfileImpl.class);
+        mongoDatabase
+            .getCollection(PROFILE_MONGO_COLLECTION_NAME, ProfileImpl.class)
+            .withCodecRegistry(
+                fromRegistries(fromCodecs(new ProfileCodec()), mongoDatabase.getCodecRegistry()));
 
     this.profileRedissonMap =
         redissonReactiveClient.getLocalCachedMap(
@@ -73,7 +78,7 @@ final class ProfileManagerImpl implements ProfileManager {
                 () ->
                     from(this.profileMongoCollection.findOneAndUpdate(
                             eq(profileId),
-                            Updates.setOnInsert("createdAt", Instant.now()),
+                            Updates.setOnInsert(ProfileCodec.CREATED_AT_FIELD_NAME, Instant.now()),
                             new FindOneAndUpdateOptions()
                                 .upsert(true)
                                 .returnDocument(ReturnDocument.AFTER)))
