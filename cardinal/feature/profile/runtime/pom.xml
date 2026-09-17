@@ -22,7 +22,6 @@
             <groupId>io.avaje</groupId>
             <artifactId>avaje-inject-generator</artifactId>
             <scope>provided</scope>
-            <optional>true</optional>
         </dependency>
 
         <dependency>
