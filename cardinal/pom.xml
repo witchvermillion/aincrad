@@ -15,11 +15,19 @@
     <modules>
         <module>integration</module>
         <module>feature</module>
+        <module>platform</module>
     </modules>
 
     <properties>
         <maven.compiler.proc>full</maven.compiler.proc>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
 
     <dependencyManagement>
         <dependencies>
