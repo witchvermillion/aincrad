@@ -50,7 +50,7 @@ final class ProfileManagerImpl implements ProfileManager {
 
   private final MongoCollection<ProfileImpl> profileMongoCollection;
 
-  private final RLocalCachedMapReactive<UUID, ProfileImpl> profileRedisLocalCache;
+  private final RLocalCachedMapReactive<UUID, ProfileImpl> profileRedisCache;
 
   ProfileManagerImpl(
       final MongoDatabase mongoDatabase, final RedissonReactiveClient redissonReactiveClient) {
@@ -60,7 +60,7 @@ final class ProfileManagerImpl implements ProfileManager {
             .withCodecRegistry(
                 fromRegistries(fromCodecs(new ProfileCodec()), mongoDatabase.getCodecRegistry()));
 
-    this.profileRedisLocalCache =
+    this.profileRedisCache =
         redissonReactiveClient.getLocalCachedMap(
             LocalCachedMapOptions.<UUID, ProfileImpl>name(PROFILE_REDIS_LOCAL_CACHE_NAME)
                 .reconnectionStrategy(ReconnectionStrategy.CLEAR)
@@ -71,7 +71,7 @@ final class ProfileManagerImpl implements ProfileManager {
 
   @Override
   public Mono<Profile> registerProfile(final UUID profileId) {
-    return this.profileRedisLocalCache
+    return this.profileRedisCache
         .get(requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL))
         .switchIfEmpty(
             defer(
@@ -84,7 +84,7 @@ final class ProfileManagerImpl implements ProfileManager {
                                 .returnDocument(ReturnDocument.AFTER)))
                         .flatMap(
                             profile ->
-                                this.profileRedisLocalCache
+                                this.profileRedisCache
                                     .fastPut(profileId, profile)
                                     .thenReturn(profile))))
         .cast(Profile.class);
@@ -92,21 +92,19 @@ final class ProfileManagerImpl implements ProfileManager {
 
   @Override
   public Mono<Profile> loadProfile(final UUID profileId) {
-    return this.profileRedisLocalCache
+    return this.profileRedisCache
         .get(requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL))
         .switchIfEmpty(
             from(this.profileMongoCollection.find(eq(profileId)).first())
                 .flatMap(
                     profile ->
-                        this.profileRedisLocalCache
-                            .fastPut(profileId, profile)
-                            .thenReturn(profile)))
+                        this.profileRedisCache.fastPut(profileId, profile).thenReturn(profile)))
         .cast(Profile.class);
   }
 
   @Override
   public @Nullable Profile profileOrNull(final UUID profileId) {
-    return this.profileRedisLocalCache
+    return this.profileRedisCache
         .getCachedMap()
         .get(requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL));
   }
