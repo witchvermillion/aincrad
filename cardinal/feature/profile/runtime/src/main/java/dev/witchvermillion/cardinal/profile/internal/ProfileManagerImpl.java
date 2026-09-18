@@ -40,17 +40,17 @@ import reactor.core.publisher.Mono;
 })
 final class ProfileManagerImpl implements ProfileManager {
 
-  private static final int PROFILE_REDISSON_MAP_CACHE_SIZE = 512;
+  private static final int PROFILE_REDIS_LOCAL_CACHE_SIZE = 512;
 
   private static final String PROFILE_MONGO_COLLECTION_NAME = "profiles",
-      PROFILE_REDISSON_MAP_NAME = "profiles",
+      PROFILE_REDIS_LOCAL_CACHE_NAME = "profiles",
       PROFILE_ID_CANNOT_BE_NULL = "Profile ID cannot be null";
 
   private static final Duration PROFILE_REDISSON_MAP_MAX_IDLE_DURATION = Duration.ofMinutes(10);
 
   private final MongoCollection<ProfileImpl> profileMongoCollection;
 
-  private final RLocalCachedMapReactive<UUID, ProfileImpl> profileRedisCache;
+  private final RLocalCachedMapReactive<UUID, ProfileImpl> profileRedisLocalCache;
 
   ProfileManagerImpl(
       final MongoDatabase mongoDatabase, final RedissonReactiveClient redissonReactiveClient) {
@@ -60,18 +60,18 @@ final class ProfileManagerImpl implements ProfileManager {
             .withCodecRegistry(
                 fromRegistries(fromCodecs(new ProfileCodec()), mongoDatabase.getCodecRegistry()));
 
-    this.profileRedisCache =
+    this.profileRedisLocalCache =
         redissonReactiveClient.getLocalCachedMap(
-            LocalCachedMapOptions.<UUID, ProfileImpl>name(PROFILE_REDISSON_MAP_NAME)
+            LocalCachedMapOptions.<UUID, ProfileImpl>name(PROFILE_REDIS_LOCAL_CACHE_NAME)
                 .reconnectionStrategy(ReconnectionStrategy.CLEAR)
                 .evictionPolicy(EvictionPolicy.LRU)
-                .cacheSize(PROFILE_REDISSON_MAP_CACHE_SIZE)
+                .cacheSize(PROFILE_REDIS_LOCAL_CACHE_SIZE)
                 .maxIdle(PROFILE_REDISSON_MAP_MAX_IDLE_DURATION));
   }
 
   @Override
   public Mono<Profile> registerProfile(final UUID profileId) {
-    return this.profileRedisCache
+    return this.profileRedisLocalCache
         .get(requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL))
         .switchIfEmpty(
             defer(
@@ -84,7 +84,7 @@ final class ProfileManagerImpl implements ProfileManager {
                                 .returnDocument(ReturnDocument.AFTER)))
                         .flatMap(
                             profile ->
-                                this.profileRedisCache
+                                this.profileRedisLocalCache
                                     .fastPut(profileId, profile)
                                     .thenReturn(profile))))
         .cast(Profile.class);
@@ -92,19 +92,21 @@ final class ProfileManagerImpl implements ProfileManager {
 
   @Override
   public Mono<Profile> loadProfile(final UUID profileId) {
-    return this.profileRedisCache
+    return this.profileRedisLocalCache
         .get(requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL))
         .switchIfEmpty(
             from(this.profileMongoCollection.find(eq(profileId)).first())
                 .flatMap(
                     profile ->
-                        this.profileRedisCache.fastPut(profileId, profile).thenReturn(profile)))
+                        this.profileRedisLocalCache
+                            .fastPut(profileId, profile)
+                            .thenReturn(profile)))
         .cast(Profile.class);
   }
 
   @Override
   public @Nullable Profile profileOrNull(final UUID profileId) {
-    return this.profileRedisCache
+    return this.profileRedisLocalCache
         .getCachedMap()
         .get(requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL));
   }
