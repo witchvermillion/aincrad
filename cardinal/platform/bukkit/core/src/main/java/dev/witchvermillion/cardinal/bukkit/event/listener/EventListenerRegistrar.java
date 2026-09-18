@@ -1,6 +1,7 @@
 package dev.witchvermillion.cardinal.bukkit.event.listener;
 
 import dev.witchvermillion.cardinal.bukkit.plugin.BukkitPlugin;
+import io.avaje.inject.External;
 import io.avaje.inject.PostConstruct;
 import jakarta.inject.Singleton;
 import java.util.Set;
@@ -14,7 +15,8 @@ final class EventListenerRegistrar {
   private final Plugin plugin;
   private final Set<Listener> listeners;
 
-  EventListenerRegistrar(final @BukkitPlugin Plugin plugin, final Set<Listener> listeners) {
+  EventListenerRegistrar(
+      final @External @BukkitPlugin Plugin plugin, final Set<Listener> listeners) {
     this.plugin = plugin;
     this.listeners = listeners;
   }
