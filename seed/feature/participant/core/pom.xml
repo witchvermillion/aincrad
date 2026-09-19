@@ -4,16 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>dev.witchvermillion</groupId>
-        <artifactId>seed-parent</artifactId>
+        <groupId>dev.witchvermillion.seed</groupId>
+        <artifactId>seed-feature-participant</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>dev.witchvermillion.seed</groupId>
-    <artifactId>seed-feature</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>participant</module>
-    </modules>
+    <groupId>dev.witchvermillion.seed.participant</groupId>
+    <artifactId>seed-feature-participant-core</artifactId>
 
 </project>
