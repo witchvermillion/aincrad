@@ -1,11 +1,9 @@
 package dev.witchvermillion.seed.participant.bukkit.event.listener;
 
 import static org.bukkit.event.EventPriority.HIGHEST;
+import static org.bukkit.event.EventPriority.LOWEST;
 
-import dev.witchvermillion.seed.entity.index.EntityIndex;
-import dev.witchvermillion.seed.participant.entity.index.ParticipantEntityIndex;
 import jakarta.inject.Singleton;
-import java.util.UUID;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -16,14 +14,7 @@ import org.jspecify.annotations.NullMarked;
 @NullMarked
 final class ParticipantConnectionListener implements Listener {
 
-  private final EntityIndex<UUID> participantEntityIndex;
-
-  ParticipantConnectionListener(
-      final @ParticipantEntityIndex EntityIndex<UUID> participantEntityIndex) {
-    this.participantEntityIndex = participantEntityIndex;
-  }
-
-  @EventHandler(priority = HIGHEST)
+  @EventHandler(priority = LOWEST)
   void onPlayerJoin(final PlayerJoinEvent playerJoinEvent) {}
 
   @EventHandler(priority = HIGHEST)
