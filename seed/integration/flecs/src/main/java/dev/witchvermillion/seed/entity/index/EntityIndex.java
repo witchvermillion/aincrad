@@ -32,7 +32,7 @@ public final class EntityIndex<K> {
         requireNonNull(key, KEY_CANNOT_BE_NULL), requireNonNull(entity, ENTITY_CANNOT_BE_NULL));
   }
 
-  public void removeEntity(final K key) {
+  public void removeEntityByKey(final K key) {
     this.entities.remove(requireNonNull(key, KEY_CANNOT_BE_NULL));
   }
 
