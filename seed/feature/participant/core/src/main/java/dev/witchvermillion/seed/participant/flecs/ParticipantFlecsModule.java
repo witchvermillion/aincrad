@@ -12,6 +12,8 @@ final class ParticipantFlecsModule implements FlecsModule {
 
   @Override
   public void initModule(final @NonNull World world) {
+    world.module(this);
+
     world.component(Participant.class);
     world.component(Disconnected.class);
   }
