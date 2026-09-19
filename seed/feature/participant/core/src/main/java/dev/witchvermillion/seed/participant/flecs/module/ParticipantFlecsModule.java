@@ -1,4 +1,4 @@
-package dev.witchvermillion.seed.participant.flecs;
+package dev.witchvermillion.seed.participant.flecs.module;
 
 import dev.witchvermillion.seed.participant.component.Disconnected;
 import dev.witchvermillion.seed.participant.component.Participant;
