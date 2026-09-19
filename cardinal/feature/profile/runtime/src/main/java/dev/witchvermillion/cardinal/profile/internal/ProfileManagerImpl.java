@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import dev.witchvermillion.cardinal.profile.Profile;
 import dev.witchvermillion.cardinal.profile.ProfileLoader;
+import dev.witchvermillion.cardinal.profile.ProfileLocalRegistry;
 import dev.witchvermillion.cardinal.profile.ProfileManager;
 import dev.witchvermillion.cardinal.profile.ProfileRegistrar;
-import dev.witchvermillion.cardinal.profile.ProfileRegistry;
 import io.avaje.inject.BeanTypes;
 import jakarta.inject.Singleton;
 import java.util.Optional;
@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 @BeanTypes({
   ProfileRegistrar.class,
   ProfileLoader.class,
-  ProfileRegistry.class,
+  ProfileLocalRegistry.class,
   ProfileManager.class
 })
 final class ProfileManagerImpl implements ProfileManager {

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jspecify.annotations.Nullable;
 
 @ApiStatus.NonExtendable
-public interface ProfileRegistry {
+public interface ProfileLocalRegistry {
 
   @Nullable Profile profileOrNull(final UUID profileId);
 
