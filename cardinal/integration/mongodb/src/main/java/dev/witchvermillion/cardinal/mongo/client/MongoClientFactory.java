@@ -1,4 +1,4 @@
-package dev.witchvermillion.cardinal.mongo.client.factory;
+package dev.witchvermillion.cardinal.mongo.client;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;

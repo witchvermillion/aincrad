@@ -1,4 +1,4 @@
-package dev.witchvermillion.cardinal.mongo.database.factory;
+package dev.witchvermillion.cardinal.mongo.database;
 
 import com.mongodb.reactivestreams.client.MongoClient;
 import com.mongodb.reactivestreams.client.MongoDatabase;
