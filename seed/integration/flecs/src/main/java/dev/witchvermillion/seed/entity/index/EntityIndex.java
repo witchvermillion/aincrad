@@ -17,11 +17,10 @@ public final class EntityIndex<K> {
       ENTITY_CANNOT_BE_NULL = "Entity cannot be null";
 
   private final BiMap<K, Entity> entities;
-  private final BiMap<Entity, K> reverseEntities;
+  private final BiMap<Entity, K> keys;
 
   public EntityIndex(final BiMap<K, Entity> entities) {
-    this.reverseEntities =
-        (this.entities = requireNonNull(entities, "Entity BiMap cannot be null")).inverse();
+    this.keys = (this.entities = requireNonNull(entities, "Entity BiMap cannot be null")).inverse();
   }
 
   public EntityIndex() {
@@ -38,7 +37,7 @@ public final class EntityIndex<K> {
   }
 
   public void removeEntity(final Entity entity) {
-    this.reverseEntities.remove(requireNonNull(entity, ENTITY_CANNOT_BE_NULL));
+    this.keys.remove(requireNonNull(entity, ENTITY_CANNOT_BE_NULL));
   }
 
   public @Nullable Entity entityOrNull(final K key) {
@@ -50,7 +49,7 @@ public final class EntityIndex<K> {
   }
 
   public @Nullable K keyOrNull(final Entity entity) {
-    return this.reverseEntities.get(requireNonNull(entity, ENTITY_CANNOT_BE_NULL));
+    return this.keys.get(requireNonNull(entity, ENTITY_CANNOT_BE_NULL));
   }
 
   public Optional<K> key(final Entity entity) {
