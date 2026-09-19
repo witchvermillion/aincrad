@@ -37,7 +37,7 @@ final class ProfileManagerImpl implements ProfileManager {
   @Override
   public Mono<Profile> registerProfile(final UUID profileId) {
     return this.profileRedisCache
-        .cachedProfile(requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL))
+        .profile(requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL))
         .switchIfEmpty(
             this.profileMongoStore
                 .findOrInsertProfile(profileId)
@@ -48,7 +48,7 @@ final class ProfileManagerImpl implements ProfileManager {
   @Override
   public Mono<Profile> loadProfile(final UUID profileId) {
     return this.profileRedisCache
-        .cachedProfile(requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL))
+        .profile(requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL))
         .switchIfEmpty(
             this.profileMongoStore
                 .findProfile(profileId)
@@ -58,7 +58,7 @@ final class ProfileManagerImpl implements ProfileManager {
 
   @Override
   public @Nullable Profile profileOrNull(final UUID profileId) {
-    return this.profileRedisCache.locallyCachedProfileOrNull(
+    return this.profileRedisCache.localProfileOrNull(
         requireNonNull(profileId, PROFILE_ID_CANNOT_BE_NULL));
   }
 

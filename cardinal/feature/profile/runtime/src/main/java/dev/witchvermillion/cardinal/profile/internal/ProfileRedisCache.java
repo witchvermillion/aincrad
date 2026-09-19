@@ -7,39 +7,40 @@ import org.jspecify.annotations.Nullable;
 import org.redisson.api.RLocalCachedMapReactive;
 import org.redisson.api.RedissonReactiveClient;
 import org.redisson.api.options.LocalCachedMapOptions;
+import org.redisson.api.options.LocalCachedMapOptions.EvictionPolicy;
+import org.redisson.api.options.LocalCachedMapOptions.ReconnectionStrategy;
 import reactor.core.publisher.Mono;
 
 @Singleton
 final class ProfileRedisCache {
 
-  private static final int PROFILE_REDIS_LOCAL_CACHE_SIZE = 512;
+  private static final int LOCAL_CACHE_SIZE = 512;
 
-  private static final String PROFILE_REDIS_CACHE_NAME = "profiles";
+  private static final String CACHE_NAME = "profiles";
 
-  private static final Duration PROFILE_REDIS_LOCAL_CACHE_MAX_IDLE_DURATION =
-      Duration.ofMinutes(10);
+  private static final Duration LOCAL_CACHE_MAX_IDLE_DURATION = Duration.ofMinutes(10);
 
-  private final RLocalCachedMapReactive<UUID, ProfileImpl> profileRedisCache;
+  private final RLocalCachedMapReactive<UUID, ProfileImpl> profiles;
 
   ProfileRedisCache(final RedissonReactiveClient redissonReactiveClient) {
-    this.profileRedisCache =
+    this.profiles =
         redissonReactiveClient.getLocalCachedMap(
-            LocalCachedMapOptions.<UUID, ProfileImpl>name(PROFILE_REDIS_CACHE_NAME)
-                .reconnectionStrategy(LocalCachedMapOptions.ReconnectionStrategy.CLEAR)
-                .evictionPolicy(LocalCachedMapOptions.EvictionPolicy.LRU)
-                .cacheSize(PROFILE_REDIS_LOCAL_CACHE_SIZE)
-                .maxIdle(PROFILE_REDIS_LOCAL_CACHE_MAX_IDLE_DURATION));
+            LocalCachedMapOptions.<UUID, ProfileImpl>name(CACHE_NAME)
+                .cacheSize(LOCAL_CACHE_SIZE)
+                .maxIdle(LOCAL_CACHE_MAX_IDLE_DURATION)
+                .evictionPolicy(EvictionPolicy.LRU)
+                .reconnectionStrategy(ReconnectionStrategy.CLEAR));
   }
 
   Mono<ProfileImpl> cacheProfile(final ProfileImpl profile) {
-    return this.profileRedisCache.fastPut(profile.id(), profile).thenReturn(profile);
+    return this.profiles.fastPut(profile.id(), profile).thenReturn(profile);
   }
 
-  Mono<ProfileImpl> cachedProfile(final UUID profileId) {
-    return this.profileRedisCache.get(profileId);
+  Mono<ProfileImpl> profile(final UUID profileId) {
+    return this.profiles.get(profileId);
   }
 
-  @Nullable ProfileImpl locallyCachedProfileOrNull(final UUID profileId) {
-    return this.profileRedisCache.getCachedMap().get(profileId);
+  @Nullable ProfileImpl localProfileOrNull(final UUID profileId) {
+    return this.profiles.getCachedMap().get(profileId);
   }
 }
