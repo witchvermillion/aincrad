@@ -13,6 +13,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>io.github.elebras1</groupId>
             <artifactId>flecs-java</artifactId>
             <version>0.13.0</version>
