@@ -7,18 +7,18 @@ import jakarta.inject.Singleton;
 import java.util.Set;
 
 @Singleton
-final class FlecsModuleRegistrar {
+final class FlecsModuleImporter {
 
   private final World world;
   private final Set<FlecsModule> flecsModules;
 
-  FlecsModuleRegistrar(final World world, final Set<FlecsModule> flecsModules) {
+  FlecsModuleImporter(final World world, final Set<FlecsModule> flecsModules) {
     this.world = world;
     this.flecsModules = flecsModules;
   }
 
   @PostConstruct
-  void registerFlecsModules() {
+  void importFlecsModules() {
     for (final FlecsModule flecsModule : this.flecsModules) {
       this.world.importModule(flecsModule);
     }
