@@ -8,7 +8,7 @@ import org.jspecify.annotations.NonNull;
 @Factory
 final class WorldFactory {
 
-  @Bean
+  @Bean(destroyMethod = "destroy")
   @NonNull World world() {
     return new World();
   }
