@@ -1,4 +1,4 @@
-package dev.witchvermillion.cardinal.redisson.client.factory;
+package dev.witchvermillion.cardinal.redisson;
 
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
