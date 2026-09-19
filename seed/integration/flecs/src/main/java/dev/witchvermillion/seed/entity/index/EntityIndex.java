@@ -20,7 +20,8 @@ public final class EntityIndex<K> {
   private final BiMap<Entity, K> reverseEntities;
 
   public EntityIndex(final BiMap<K, Entity> entities) {
-    this.reverseEntities = (this.entities = entities).inverse();
+    this.reverseEntities =
+        (this.entities = requireNonNull(entities, "Entity BiMap cannot be null")).inverse();
   }
 
   public EntityIndex() {

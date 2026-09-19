@@ -1,4 +1,4 @@
-package dev.witchvermillion.seed.participant.event.listener;
+package dev.witchvermillion.seed.participant.bukkit.event.listener;
 
 import static org.bukkit.event.EventPriority.HIGHEST;
 

@@ -1,4 +1,4 @@
-package dev.witchvermillion.seed.flecs;
+package dev.witchvermillion.seed.flecs.module;
 
 import io.avaje.inject.PostConstruct;
 import io.github.elebras1.flecs.FlecsModule;
