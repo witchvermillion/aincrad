@@ -8,8 +8,6 @@ import org.bson.codecs.EncoderContext;
 
 final class TranslationCodec implements Codec<TranslationImpl> {
 
-  private static final Codec<TranslationKeyImpl> TRANSLATION_KEY_CODEC = new TranslationKeyCodec();
-
   @Override
   public TranslationImpl decode(final BsonReader bsonReader, final DecoderContext decoderContext) {
     return null;
