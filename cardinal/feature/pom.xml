@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>profile</module>
-        <module>i18n</module>
     </modules>
 
 </project>
