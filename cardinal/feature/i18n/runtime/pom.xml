@@ -25,6 +25,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>dev.witchvermillion.cardinal.i18n</groupId>
             <artifactId>cardinal-feature-i18n-api</artifactId>
             <version>${project.version}</version>

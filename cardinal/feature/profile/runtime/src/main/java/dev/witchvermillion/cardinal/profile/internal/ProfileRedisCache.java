@@ -7,6 +7,7 @@ import org.jspecify.annotations.Nullable;
 import org.redisson.api.RLocalCachedMapReactive;
 import org.redisson.api.RedissonReactiveClient;
 import org.redisson.api.options.LocalCachedMapOptions;
+import org.redisson.api.options.LocalCachedMapOptions.CacheProvider;
 import org.redisson.api.options.LocalCachedMapOptions.EvictionPolicy;
 import org.redisson.api.options.LocalCachedMapOptions.ReconnectionStrategy;
 import reactor.core.publisher.Mono;
@@ -29,6 +30,7 @@ final class ProfileRedisCache {
                 .cacheSize(LOCAL_CACHE_SIZE)
                 .maxIdle(LOCAL_CACHE_MAX_IDLE_DURATION)
                 .evictionPolicy(EvictionPolicy.LRU)
+                .cacheProvider(CacheProvider.CAFFEINE)
                 .reconnectionStrategy(ReconnectionStrategy.CLEAR));
   }
 

@@ -19,14 +19,14 @@ import reactor.core.publisher.Mono;
 @Singleton
 final class ProfileMongoStore {
 
-  private static final String PROFILE_MONGO_COLLECTION_NAME = "profiles";
+  private static final String MONGO_COLLECTION_NAME = "profiles";
 
   private final MongoCollection<ProfileImpl> profileMongoCollection;
 
   ProfileMongoStore(final MongoDatabase mongoDatabase) {
     this.profileMongoCollection =
         mongoDatabase
-            .getCollection(PROFILE_MONGO_COLLECTION_NAME, ProfileImpl.class)
+            .getCollection(MONGO_COLLECTION_NAME, ProfileImpl.class)
             .withCodecRegistry(
                 fromRegistries(fromCodecs(new ProfileCodec()), mongoDatabase.getCodecRegistry()));
   }
