@@ -4,4 +4,10 @@ import dev.witchvermillion.cardinal.i18n.TranslationKey;
 import java.time.Instant;
 
 record TranslationKeyImpl(String namespace, String name, Instant createdAt)
-    implements TranslationKey {}
+    implements TranslationKey {
+
+  @Override
+  public String toString() {
+    return "%s:%s".formatted(this.namespace, this.name);
+  }
+}
