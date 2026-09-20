@@ -5,16 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>dev.witchvermillion.cardinal</groupId>
-        <artifactId>cardinal-feature</artifactId>
+        <artifactId>cardinal-feature-i18n</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cardinal-feature-i18n</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>api</module>
-        <module>runtime</module>
-        <module>integration</module>
-    </modules>
+    <groupId>dev.witchvermillion.cardinal.i18n</groupId>
+    <artifactId>cardinal-feature-i18n-integration</artifactId>
 
 </project>
