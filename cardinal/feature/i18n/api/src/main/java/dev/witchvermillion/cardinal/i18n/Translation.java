@@ -7,7 +7,7 @@ import org.jetbrains.annotations.ApiStatus;
 @ApiStatus.NonExtendable
 public interface Translation {
 
-  TranslationKey key();
+  String key();
 
   Locale locale();
 
