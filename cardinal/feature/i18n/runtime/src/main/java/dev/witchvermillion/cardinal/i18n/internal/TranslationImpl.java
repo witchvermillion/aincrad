@@ -5,5 +5,5 @@ import dev.witchvermillion.cardinal.i18n.TranslationKey;
 import java.time.Instant;
 import java.util.Locale;
 
-record TranslationImpl(TranslationKey key, Locale locale, Instant createdAt)
+record TranslationImpl(TranslationKey key, Locale locale, String template, Instant createdAt)
     implements Translation {}

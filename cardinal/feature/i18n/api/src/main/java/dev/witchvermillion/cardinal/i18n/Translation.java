@@ -11,5 +11,7 @@ public interface Translation {
 
   Locale locale();
 
+  String template();
+
   Instant createdAt();
 }

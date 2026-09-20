@@ -14,6 +14,16 @@ import org.jspecify.annotations.Nullable;
 @BeanTypes({TranslationLoader.class, TranslationLocalRegistry.class, TranslationManager.class})
 final class TranslationManagerImpl implements TranslationManager {
 
+  private final TranslationMongoStore translationMongoStore;
+  private final TranslationRedisCache translationRedisCache;
+
+  TranslationManagerImpl(
+      final TranslationMongoStore translationMongoStore,
+      final TranslationRedisCache translationRedisCache) {
+    this.translationMongoStore = translationMongoStore;
+    this.translationRedisCache = translationRedisCache;
+  }
+
   @Override
   public @Nullable Translation translationOrNull(final String translationKey, final Locale locale) {
     return null;
