@@ -1,6 +1,5 @@
 package dev.witchvermillion.seed.participant.flecs.module;
 
-import dev.witchvermillion.seed.participant.component.Disconnected;
 import dev.witchvermillion.seed.participant.component.Participant;
 import io.github.elebras1.flecs.FlecsModule;
 import io.github.elebras1.flecs.World;
@@ -15,6 +14,5 @@ final class ParticipantFlecsModule implements FlecsModule {
     world.module(this);
 
     world.component(Participant.class);
-    world.component(Disconnected.class);
   }
 }
