@@ -6,12 +6,9 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import com.mongodb.reactivestreams.client.MongoCollection;
 import com.mongodb.reactivestreams.client.MongoDatabase;
 import jakarta.inject.Singleton;
-import org.bson.codecs.Codec;
 
 @Singleton
 final class TranslationKeyMongoStore {
-
-  public static final Codec<TranslationKeyImpl> TRANSLATION_KEY_CODEC = new TranslationKeyCodec();
 
   private static final String MONGO_COLLECTION_NAME = "translation_keys";
 
@@ -23,6 +20,6 @@ final class TranslationKeyMongoStore {
             .getCollection(MONGO_COLLECTION_NAME, TranslationKeyImpl.class)
             .withCodecRegistry(
                 fromRegistries(
-                    fromCodecs(TRANSLATION_KEY_CODEC), mongoDatabase.getCodecRegistry()));
+                    fromCodecs(new TranslationKeyCodec()), mongoDatabase.getCodecRegistry()));
   }
 }
