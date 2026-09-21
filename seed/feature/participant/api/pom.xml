@@ -14,9 +14,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>dev.witchvermillion.seed</groupId>
-            <artifactId>seed-integration-flecs</artifactId>
-            <version>${project.version}</version>
+            <groupId>io.github.elebras1</groupId>
+            <artifactId>flecs-java</artifactId>
+            <version>0.13.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jspecify</groupId>
+            <artifactId>jspecify</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

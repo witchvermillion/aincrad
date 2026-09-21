@@ -18,6 +18,11 @@
             <artifactId>seed-feature-participant-api</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>dev.witchvermillion.seed</groupId>
+            <artifactId>seed-integration-flecs</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
