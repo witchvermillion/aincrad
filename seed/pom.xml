@@ -18,6 +18,8 @@
 
     <properties>
         <maven.compiler.proc>full</maven.compiler.proc>
+        <avaje.inject.version>12.6</avaje.inject.version>
+        <flecs.version>0.15.0</flecs.version>
     </properties>
 
     <dependencyManagement>
@@ -37,7 +39,45 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>io.github.elebras1</groupId>
+                <artifactId>flecs-java</artifactId>
+                <version>${flecs.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-inject-maven-plugin</artifactId>
+                <version>12.6</version>
+                <executions>
+                    <execution>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>provides</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.16.0</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>io.github.elebras1</groupId>
+                            <artifactId>flecs-java</artifactId>
+                            <version>${flecs.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

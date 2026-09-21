@@ -16,7 +16,6 @@
         <dependency>
             <groupId>io.github.elebras1</groupId>
             <artifactId>flecs-java</artifactId>
-            <version>0.13.0</version>
         </dependency>
 
         <dependency>

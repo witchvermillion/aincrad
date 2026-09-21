@@ -2,10 +2,12 @@ package dev.witchvermillion.seed.participant.internal;
 
 import static java.util.Objects.requireNonNull;
 
-import dev.witchvermillion.seed.participant.Participant;
 import dev.witchvermillion.seed.participant.ParticipantEntityManager;
 import dev.witchvermillion.seed.participant.ParticipantEntityRegistrar;
 import dev.witchvermillion.seed.participant.ParticipantEntityRegistry;
+import dev.witchvermillion.seed.participant.component.Participant;
+import dev.witchvermillion.seed.participant.component.Username;
+import dev.witchvermillion.seed.participant.component.UsernameView;
 import io.avaje.inject.BeanTypes;
 import io.github.elebras1.flecs.Entity;
 import io.github.elebras1.flecs.World;
@@ -44,20 +46,19 @@ final class ParticipantEntityManagerImpl implements ParticipantEntityManager {
 
     final Entity participantEntity = this.participants.get(participantId);
     if (participantEntity == null) {
-      this.participants.put(participantId, this.createParticipantEntity(participantUsername));
+      this.participants.put(
+          participantId,
+          this.world
+              .obtainEntity(this.world.entity())
+              .add(Participant.class)
+              .set(new Username(participantUsername)));
       return;
     }
 
-    if (!participantUsername.equals(participantEntity.name())) {
-      participantEntity.name(participantUsername);
+    final UsernameView usernameView = participantEntity.getMutView(Username.class);
+    if (!participantUsername.equals(usernameView.username())) {
+      usernameView.username(participantUsername);
     }
-  }
-
-  private Entity createParticipantEntity(final String participantUsername) {
-    return this.world
-        .obtainEntity(this.world.entity())
-        .name(participantUsername)
-        .add(Participant.class);
   }
 
   @Override
