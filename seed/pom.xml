@@ -70,6 +70,11 @@
                 <configuration>
                     <annotationProcessorPaths>
                         <path>
+                            <groupId>io.avaje</groupId>
+                            <artifactId>avaje-inject-generator</artifactId>
+                            <version>${avaje.inject.version}</version>
+                        </path>
+                        <path>
                             <groupId>io.github.elebras1</groupId>
                             <artifactId>flecs-java</artifactId>
                             <version>${flecs.version}</version>
