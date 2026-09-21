@@ -1,15 +1,16 @@
-package dev.witchvermillion.seed.participant.internal;
+package dev.witchvermillion.seed.participant.internal.flecs.module;
 
 import dev.witchvermillion.seed.participant.Participant;
 import io.github.elebras1.flecs.FlecsModule;
 import io.github.elebras1.flecs.World;
 import jakarta.inject.Singleton;
+import org.jspecify.annotations.NonNull;
 
 @Singleton
 final class ParticipantFlecsModule implements FlecsModule {
 
   @Override
-  public void initModule(final World world) {
+  public void initModule(final @NonNull World world) {
     world.module(this);
     world.component(Participant.class);
   }
