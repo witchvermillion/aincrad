@@ -10,6 +10,14 @@
     </parent>
 
     <groupId>dev.witchvermillion.seed.participant</groupId>
-    <artifactId>seed-feature-participant-core</artifactId>
+    <artifactId>seed-feature-participant-runtime</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>dev.witchvermillion.seed.participant</groupId>
+            <artifactId>seed-feature-participant-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

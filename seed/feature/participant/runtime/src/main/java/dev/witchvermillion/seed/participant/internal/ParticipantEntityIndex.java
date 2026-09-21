@@ -1,4 +1,4 @@
-package dev.witchvermillion.seed.participant.entity.index;
+package dev.witchvermillion.seed.participant.internal;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
@@ -14,4 +14,4 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({FIELD, PARAMETER, METHOD})
-public @interface ParticipantEntityIndex {}
+@interface ParticipantEntityIndex {}

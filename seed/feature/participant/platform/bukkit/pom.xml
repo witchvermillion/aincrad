@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>dev.witchvermillion.seed.participant</groupId>
-            <artifactId>seed-feature-participant-core</artifactId>
+            <artifactId>seed-feature-participant-runtime</artifactId>
             <version>${project.version}</version>
         </dependency>
 

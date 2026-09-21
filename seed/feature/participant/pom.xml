@@ -12,7 +12,8 @@
     <artifactId>seed-feature-participant</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>core</module>
+        <module>api</module>
+        <module>runtime</module>
         <module>platform</module>
     </modules>
 

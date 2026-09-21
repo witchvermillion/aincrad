@@ -27,7 +27,7 @@ public final class EntityIndex<K> {
     this(HashBiMap.create());
   }
 
-  public void addEntity(final K key, final Entity entity) {
+  public void putEntity(final K key, final Entity entity) {
     this.entities.put(
         requireNonNull(key, KEY_CANNOT_BE_NULL), requireNonNull(entity, ENTITY_CANNOT_BE_NULL));
   }
