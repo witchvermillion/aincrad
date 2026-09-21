@@ -42,9 +42,10 @@ final class ParticipantEntityManagerImpl implements ParticipantEntityManager {
     requireNonNull(participantId, PARTICIPANT_ID_CANNOT_BE_NULL);
     requireNonNull(participantUsername, "Participant username cannot be null");
 
-    final Entity participantEntity = this.participants.get(participantId);
+    final Entity participantEntity =
+        this.participants.putIfAbsent(
+            participantId, this.createParticipantEntity(participantUsername));
     if (participantEntity == null) {
-      this.participants.put(participantId, this.createParticipantEntity(participantUsername));
       return;
     }
 
