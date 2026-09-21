@@ -49,7 +49,10 @@ final class ParticipantManagerImpl implements ParticipantManager {
 
   @Override
   public void unregisterParticipant(final UUID participantId) {
-    this.participantEntityIndex.removeEntityByKey(participantId);
+    final Entity participantEntity = this.participantEntityIndex.removeEntityByKey(participantId);
+    if (participantEntity != null) {
+      participantEntity.destruct();
+    }
   }
 
   @Override

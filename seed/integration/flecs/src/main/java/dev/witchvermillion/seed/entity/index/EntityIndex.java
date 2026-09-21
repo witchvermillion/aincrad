@@ -5,6 +5,7 @@ import static java.util.Optional.ofNullable;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.github.elebras1.flecs.Entity;
 import java.util.Optional;
 import org.jspecify.annotations.NullMarked;
@@ -32,12 +33,12 @@ public final class EntityIndex<K> {
         requireNonNull(key, KEY_CANNOT_BE_NULL), requireNonNull(entity, ENTITY_CANNOT_BE_NULL));
   }
 
-  public void removeEntityByKey(final K key) {
-    this.entities.remove(requireNonNull(key, KEY_CANNOT_BE_NULL));
+  public @Nullable @CanIgnoreReturnValue Entity removeEntityByKey(final K key) {
+    return this.entities.remove(requireNonNull(key, KEY_CANNOT_BE_NULL));
   }
 
-  public void removeEntity(final Entity entity) {
-    this.keys.remove(requireNonNull(entity, ENTITY_CANNOT_BE_NULL));
+  public @Nullable @CanIgnoreReturnValue K removeEntity(final Entity entity) {
+    return this.keys.remove(requireNonNull(entity, ENTITY_CANNOT_BE_NULL));
   }
 
   public @Nullable Entity entityOrNull(final K key) {
