@@ -1,6 +1,6 @@
 package dev.witchvermillion.seed.participant.bukkit.event.listener;
 
-import dev.witchvermillion.seed.participant.ParticipantRegistrar;
+import dev.witchvermillion.seed.participant.ParticipantEntityRegistrar;
 import jakarta.inject.Singleton;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,15 +13,16 @@ import org.jspecify.annotations.NullMarked;
 @NullMarked
 final class ParticipantConnectionListener implements Listener {
 
-  private final ParticipantRegistrar participantRegistrar;
+  private final ParticipantEntityRegistrar participantEntityRegistrar;
 
-  ParticipantConnectionListener(final ParticipantRegistrar participantRegistrar) {
-    this.participantRegistrar = participantRegistrar;
+  ParticipantConnectionListener(final ParticipantEntityRegistrar participantEntityRegistrar) {
+    this.participantEntityRegistrar = participantEntityRegistrar;
   }
 
   @EventHandler(priority = EventPriority.LOWEST)
   void onPlayerJoin(final PlayerJoinEvent playerJoinEvent) {
     final Player player = playerJoinEvent.getPlayer();
-    this.participantRegistrar.registerParticipant(player.getUniqueId(), player.getName());
+    this.participantEntityRegistrar.registerParticipantEntity(
+        player.getUniqueId(), player.getName());
   }
 }
