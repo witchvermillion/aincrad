@@ -7,4 +7,6 @@ import org.jetbrains.annotations.ApiStatus;
 public interface ParticipantRegistrar {
 
   void registerParticipant(final UUID participantId, final String participantUsername);
+
+  void unregisterParticipant(final UUID participantId);
 }

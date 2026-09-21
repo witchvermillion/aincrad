@@ -2,9 +2,9 @@ package dev.witchvermillion.seed.participant.internal;
 
 import dev.witchvermillion.seed.entity.index.EntityIndex;
 import dev.witchvermillion.seed.participant.Participant;
+import dev.witchvermillion.seed.participant.ParticipantEntityRegistry;
 import dev.witchvermillion.seed.participant.ParticipantManager;
 import dev.witchvermillion.seed.participant.ParticipantRegistrar;
-import dev.witchvermillion.seed.participant.ParticipantRegistry;
 import io.avaje.inject.BeanTypes;
 import io.github.elebras1.flecs.Entity;
 import io.github.elebras1.flecs.World;
@@ -14,7 +14,7 @@ import java.util.UUID;
 import org.jspecify.annotations.Nullable;
 
 @Singleton
-@BeanTypes({ParticipantRegistrar.class, ParticipantRegistry.class, ParticipantManager.class})
+@BeanTypes({ParticipantRegistrar.class, ParticipantEntityRegistry.class, ParticipantManager.class})
 final class ParticipantManagerImpl implements ParticipantManager {
 
   private final World world;
@@ -45,6 +45,11 @@ final class ParticipantManagerImpl implements ParticipantManager {
 
               this.participantEntityIndex.putEntity(participantId, participantEntity);
             });
+  }
+
+  @Override
+  public void unregisterParticipant(final UUID participantId) {
+    this.participantEntityIndex.removeEntityByKey(participantId);
   }
 
   @Override

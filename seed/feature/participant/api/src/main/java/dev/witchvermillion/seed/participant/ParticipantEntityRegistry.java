@@ -7,7 +7,7 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jspecify.annotations.Nullable;
 
 @ApiStatus.NonExtendable
-public interface ParticipantRegistry {
+public interface ParticipantEntityRegistry {
 
   @Nullable Entity participantEntityOrNull(final UUID participantId);
 
