@@ -11,11 +11,11 @@ import org.jspecify.annotations.NullMarked;
 
 @Singleton
 @NullMarked
-final class ParticipantConnectionListener implements Listener {
+final class ParticipantConnectionEventListener implements Listener {
 
   private final ParticipantEntityRegistrar participantEntityRegistrar;
 
-  ParticipantConnectionListener(final ParticipantEntityRegistrar participantEntityRegistrar) {
+  ParticipantConnectionEventListener(final ParticipantEntityRegistrar participantEntityRegistrar) {
     this.participantEntityRegistrar = participantEntityRegistrar;
   }
 
