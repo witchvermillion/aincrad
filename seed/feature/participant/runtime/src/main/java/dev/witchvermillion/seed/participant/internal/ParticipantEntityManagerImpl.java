@@ -44,18 +44,20 @@ final class ParticipantEntityManagerImpl implements ParticipantEntityManager {
 
     final Entity participantEntity = this.participants.get(participantId);
     if (participantEntity == null) {
-      this.participants.put(
-          participantId,
-          this.world
-              .obtainEntity(this.world.entity())
-              .name(participantUsername)
-              .add(Participant.class));
+      this.participants.put(participantId, this.createParticipantEntity(participantUsername));
       return;
     }
 
     if (!participantUsername.equals(participantEntity.name())) {
       participantEntity.name(participantUsername);
     }
+  }
+
+  private Entity createParticipantEntity(final String participantUsername) {
+    return this.world
+        .obtainEntity(this.world.entity())
+        .name(participantUsername)
+        .add(Participant.class);
   }
 
   @Override
