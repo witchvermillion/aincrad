@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>api</module>
-        <module>extension</module>
         <module>runtime</module>
     </modules>
 
