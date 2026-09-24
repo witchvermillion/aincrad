@@ -31,8 +31,7 @@ final class ProfileCodec implements Codec<ProfileImpl> {
     bsonReader.readStartDocument();
 
     while (bsonReader.readBsonType() != BsonType.END_OF_DOCUMENT) {
-      final String fieldName = bsonReader.readName();
-      switch (fieldName) {
+      switch (bsonReader.readName()) {
         case ID_FIELD_NAME -> id = decoderContext.decodeWithChildContext(UUID_CODEC, bsonReader);
         case CREATED_AT_FIELD_NAME ->
             createdAt = decoderContext.decodeWithChildContext(INSTANT_CODEC, bsonReader);
